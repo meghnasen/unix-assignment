@@ -32,7 +32,7 @@ while [[ ! $phoneNumber =~ $pat ]]
     read phoneNumber
     done
 echo $phoneNumber
-        echo "$name:$number" >>  $phoneBook
+        echo "$name:$phoneNumber" >>  $phoneBook
         cat $phoneBook
         break
 fi
