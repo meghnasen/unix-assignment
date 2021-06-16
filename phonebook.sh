@@ -14,7 +14,7 @@ echo "Select an operation"
         read ch
 if [ "$ch" -eq 1 ]
 then
-        echo "add entry selected"
+        echo "ADD A PHONE NUMBER:"
         echo "Enter a name: "
 read name
 while [ -z $name ]
@@ -38,22 +38,45 @@ echo $phoneNumber
 fi
 if [ "$ch" -eq 2 ]
 then
+        echo "DISPLAY PHONEBOOK:"
         cat phonebook_values.txt
         break
 fi
 if [ "$ch" -eq 3 ]
 then
-        echo "remove  entry selected"
+        echo "DELETE A PHONE NUMBER:"
+        echo "Enter the phone number to be deleted: "
+        read phone
+        pat="^[0-9]{10}$"
+        while [[ ! $phone =~ $pat ]]
+    do
+    echo "Please enter a valid phone number: "
+    read phone
+    done
+        sed -i "/$phone/d" $phoneBook
+        cat $phoneBook
+        echo "the phone number has been deleted"
         break
 fi
 if [ "$ch" -eq 4 ]
 then
-        echo "clear phonebook selected"
+        echo "CLEAR PHONEBOOK:"
+        echo "Are you sure you want to clear the phone book: [y/n]"
+        read choice
+        if [ $choice == "y" -o $choice == "Y" ]
+        then
+        cp /dev/null $phoneBook
+        echo "The phonebook has been cleared"
+        fi
+        if [ $choice == "n" -o $choice == "N" ]
+        then 
+        break
+        fi
         break
 fi
 if [ "$ch" -eq 5 ]
 then
-        echo "display entry acc to name selected"
+        echo "DISPLAY ENTRY ACC. TO NAME"
         echo "Enter a name: "
         read option
 while [ -z $option ]
