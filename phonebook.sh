@@ -27,10 +27,12 @@ if [ "$ch" -eq 3 ]
 then
         echo "remove  entry selected"
         break
+fi
 if [ "$ch" -eq 4 ]
 then
         echo "clear phonebook selected"
         break
+fi
 if [ "$ch" -eq 5 ]
 then
         echo "display entry acc to name selected"
