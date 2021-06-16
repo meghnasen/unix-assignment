@@ -39,7 +39,7 @@ echo $phoneNumber
 fi
 if [ "$ch" -eq 2 ]
 then
-        echo "display entries selected"
+        cat phonebook_values.txt
         break
 fi
 if [ "$ch" -eq 3 ]
