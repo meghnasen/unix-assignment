@@ -22,17 +22,19 @@ while [ -z $name ]
     do
     echo "please enter a name: "
     read name
-done
+    done
 echo $name
 echo "Enter a phone number[10 digits]: "
 read phoneNumber
 pat="^[0-9]{10}$"
-while [[ ! $phoneNumber =~ $pat ]]
+while [[ ! $phoneNumber !=  $pat ]]
     do
     echo "Please enter a valid phone number: "
     read phoneNumber
-done
+    done
 echo $phoneNumber
+        echo "$name: $phonenumber" > phonebook_values.txt
+        cat phonebook_values.txt
         break
 fi
 if [ "$ch" -eq 2 ]
