@@ -16,6 +16,23 @@ echo "Select an operation"
 if [ "$ch" -eq 1 ]
 then
         echo "add entry selected"
+        echo "Enter a name: "
+read name
+while [ -z $name ]
+    do
+    echo "please enter a name: "
+    read name
+done
+echo $name
+echo "Enter a phone number[10 digits]: "
+read phoneNumber
+pat="^[0-9]{10}$"
+while [[ ! $phoneNumber =~ $pat ]]
+    do
+    echo "Please enter a valid phone number: "
+    read phoneNumber
+done
+echo $phoneNumber
         break
 fi
 if [ "$ch" -eq 2 ]
