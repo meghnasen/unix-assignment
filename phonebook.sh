@@ -1,6 +1,5 @@
-BOOK="phonebook_values.txt"
- 
-export BOOK
+#!/bin/bash
+phoneBook="phonebook_values.txt"
 exit=0
 clear
 while [ $exit -ne 1 ]
@@ -27,14 +26,14 @@ echo $name
 echo "Enter a phone number[10 digits]: "
 read phoneNumber
 pat="^[0-9]{10}$"
-while [[ ! $phoneNumber !=  $pat ]]
+while [[ ! $phoneNumber =~ $pat ]]
     do
     echo "Please enter a valid phone number: "
     read phoneNumber
     done
 echo $phoneNumber
-        echo "$name: $phonenumber" > phonebook_values.txt
-        cat phonebook_values.txt
+        echo "$name:$number" >>  $phoneBook
+        cat $phoneBook
         break
 fi
 if [ "$ch" -eq 2 ]
@@ -55,6 +54,15 @@ fi
 if [ "$ch" -eq 5 ]
 then
         echo "display entry acc to name selected"
+        echo "Enter a name: "
+        read option
+while [ -z $option ]
+    do
+    echo "please enter a name: "
+    read option
+    done
+        echo The available phone records are:
+        grep $option $phoneBook
 fi
 if [ "$ch" -eq 6 ]
 then
