@@ -26,19 +26,21 @@ insertRecord(){
             while (( 1 ))
             do
                 if [[ $roll_number =~ ^2020HS[0-9]{5}$ ]]; then
+                  res="no"
+                  res=`awk -F: -v var="$roll_number" '{if ($2 ~ var ) {print "yes";}}' "$database_file" `
+                  if [[ $res =~ "yes" ]]; then
+                    echo "This student entry already exists in database. Please enter valid input ,Example: 2020HSxxxxx"
+                    read roll_number
+                  else
+                    break
+                fi
                     break
                 else
                     echo "The roll number must be at least 11 characters, Example: 2020HSxxxxx"
                     read roll_number
                 fi
-                res="no" # bool variable (sort of) with false
-                res=`awk -F: -v var="$roll_number" '{if ($3 ~ var ) {print "yes";}}' "$database_file" `
-                if [[ $res =~ "yes" ]]; then
-                    echo "This student entry already exists in database."
-                    read roll_number
-                else
-                    break
-                fi
+
+
             done
 
         echo "You entered " "$roll_number"
