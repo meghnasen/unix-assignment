@@ -103,7 +103,7 @@ insertRecord(){
         newRecord=$fName" :"$roll_number":"$marks_maths":"$semester
         echo "The student record that is being inserted is: "
         echo "Student Roll Number: $roll_number"
-        echo "Student Name: $fname"
+        echo "Student Name: $fName"
         echo "Student Math Marks: $marks_maths"
         echo "Student Semester: $semester"
         echo " =============================="
