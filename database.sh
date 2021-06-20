@@ -6,6 +6,12 @@
 #(d)	exit
 #The shell script should accept a choice from the user and execute the corresponding option until exit option is chosen.
 
+ if [ -e database ]
+ then
+         echo ""
+else
+        touch database
+ fi
 database_file="database"
 
 # check file exist. if not leave program
@@ -19,7 +25,7 @@ insertRecord(){
         marks_maths=""
         semester=""
 
-        echo "Please enter your roll number: "
+        echo "Please enter your roll number (Format:  2020HSxxxxx): "
         #The roll number must be at least 11 characters, Example: 2020HSxxxxx
         read roll_number
 
@@ -49,15 +55,11 @@ insertRecord(){
 
         echo "Please enter your first name:"
         read fName
-        while (( 1 ))
-        do
-            if [[ $fName =~ ^[A-Z][a-z]+$  ]]; then
-                break
-            else
-                echo "Invalid format. first name should contain only alphabets. enter again. "
+       while [ -z $fName ]
+            do
+                echo "please enter a name: "
                 read fName
-            fi
-        done
+            done
         echo "You entered " $fName
         echo
 
@@ -101,7 +103,7 @@ insertRecord(){
         newRecord=$fName" :"$roll_number":"$marks_maths":"$semester
         echo "The student record that is being inserted is: "
         echo "Student Roll Number: $roll_number"
-        echo "Student Name: $fname"
+        echo "Student Name: $fName"
         echo "Student Math Marks: $marks_maths"
         echo "Student Semester: $semester"
         echo " =============================="
